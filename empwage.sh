@@ -1,4 +1,3 @@
-#!/bash/bin -x
 #!/bin/bash -x
 
 IS_PART_TIME=1;
@@ -9,6 +8,8 @@ NUM_WORKING_DAYS=20;
 
 totalEmpHr=0;
 totalWorkingDays=0;
+
+declare -A dailyWage
 
 function	getWorkHrs()
 {
@@ -36,10 +37,12 @@ do
    ((totalWorkingDays++))
    empHrs="$( getWorkHrs $((RANDOM%3)) )"
    totalEmpHrs=$((totalEmpHrs+empHrs))
-	dailyWage[$totalWorkingDays]="$( getEmpWage $empHrs )"
+	dailyWage["Day $totalWorkingDays"]="$( getEmpWage $empHrs )"
 
 done
 
 totalSalary=$((totalEmpHrs*EMP_RATE_PER_HR));
 
 echo ${dailyWage[@]}
+echo ${!dailyWage[@]}
+
