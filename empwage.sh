@@ -1,5 +1,5 @@
 #/bin/bash -x
-
+echo "Welcome"
 isPresent=1
 randomCheck=$(( RANDOM%2 ));
 
